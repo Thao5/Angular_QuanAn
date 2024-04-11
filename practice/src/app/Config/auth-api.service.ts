@@ -8,9 +8,12 @@ const SERVER = "http://localhost:8080";
 
 export const endpointsAuth = {
   currentUser: `${SERVER}${SERVER_CONTEXT}/api/current-user/`,
-  pay: `${SERVER}${SERVER_CONTEXT}/api/pay/`,
+  pay: `${SERVER}${SERVER_CONTEXT}/api/pay_paypal/`,
   datban: `${SERVER}${SERVER_CONTEXT}/api/datban/`,
-  payOff: `${SERVER}${SERVER_CONTEXT}/api/payoffline/`
+  payOff: `${SERVER}${SERVER_CONTEXT}/api/payoffline/`,
+  changePassword: `${SERVER}${SERVER_CONTEXT}/api/doimatkhau/`,
+  comments: (storeId: any) =>  `${SERVER}${SERVER_CONTEXT}/api/stores/${storeId}/comments/`,
+  addcomment: `${SERVER}${SERVER_CONTEXT}/api/comments/`
 };
 
 @Injectable({
@@ -25,6 +28,10 @@ export class AuthApiService {
 
       headers: {
         Authorization: this.cookieService.get('token'),
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type':'application/json'
+        // 'Access-Control-Allow-Methods':'GET,POST,PATCH,OPTIONS',
+        // "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },
     })
   }
@@ -32,8 +39,10 @@ export class AuthApiService {
   post(endpoint: string, body: any) {
     return this.http.post(endpoint, body, {
       observe: 'response',
+      responseType: 'text',
       headers: {
         Authorization: this.cookieService.get('token'),
+        'Access-Control-Allow-Origin': '*',
       },
     });
   }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
-import { increment } from 'src/app/Reducer/MyCartCounterReducer/counter.actions';
+import { increment } from 'src/app/Reducer/MyCartCounterState/counter.actions';
 import { MyCartService } from 'src/app/Service/my-cart.service';
 
 @Component({
@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
   user:any = [];
   count:number = 1;
   loading!: any
+   p:number = 1
+   itemPerPage: number = 4
+  totalProduct!: any
   private carts: any = {};
   constructor(private apis: ApiService,
      private cookie: CookieService,
@@ -30,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.apis.get(endpoints.foods).subscribe((data) => {
       this.foods = data
       this.loading = false
+      // this.totalProduct = data.length;
     })
     if(this.cookie.check('user') === true){
       this.user = JSON.parse(this.cookie.get('user'))

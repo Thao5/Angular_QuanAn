@@ -13,6 +13,12 @@ import { Page404Component } from './component/page404/page404.component';
 import { IntroduceComponent } from './component/introduce/introduce.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { ContactComponent } from './component/contact/contact.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { ThongTinCaNhanComponent } from './component/thong-tin-ca-nhan/thong-tin-ca-nhan.component';
+import { DanhGiaComponent } from './component/danh-gia/danh-gia.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { FoodDetailComponent } from './food-detail/food-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,11 +33,14 @@ const routes: Routes = [
   {path: 'cartoff', component: CartOffComponent},
   {path: 'introduce', component: IntroduceComponent},
   {path: 'menu', component: MenuComponent},
+  {path: 'menu/:idFood', component: FoodDetailComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'forgot', component: ForgotPasswordComponent},
+  {path: 'changepw', component: ChangePasswordComponent},
+  {path: 'detail', component: ThongTinCaNhanComponent},
+  {path: ':storeId/comments', component: DanhGiaComponent},
+  {path: 'chatbot', component: ChatbotComponent},
   {path: '**', component: Page404Component}
-  // {path: 'forgot', component: ForgotPasswordComponent},
-  // {path: 'register', component: SigninComponent},
-  // {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
